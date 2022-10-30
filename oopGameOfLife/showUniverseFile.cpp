@@ -9,12 +9,8 @@ void showUniverseFile::show() {
 	for (int i = 0; i < currentUniverse.height(); ++i) {
 		for (int j = 0; j < currentUniverse.width(); ++j) {
 			if (currentUniverse.getCell(i, j) == true) {
-				fout << "* ";
-			}
-			else {
-				fout << "  ";
+				fout << i + 1 << " " << j + 1 << std::endl;
 			}
 		}
-		fout << std::endl;
 	}
 }

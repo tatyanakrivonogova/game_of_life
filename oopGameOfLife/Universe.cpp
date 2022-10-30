@@ -178,6 +178,11 @@ void Universe::setCell(int x, int y, bool value) {
     cells[x][y] = value;
 }
 
+void Universe::changeCells(std::vector< std::vector<bool> >&& newcells) noexcept {
+    
+    cells = std::move(newcells);
+}
+
 
 bool Universe::getCell(int x, int y) const {
     x = Universe::torus(x, sizeX);
@@ -197,10 +202,10 @@ const std::vector<int>& Universe::getSurviveRule() const {
 
 
 int Universe::width() const {
-    return sizeY;
+    return sizeX;
 }
 int Universe::height() const {
-    return sizeX;
+    return sizeY;
 }
 
 

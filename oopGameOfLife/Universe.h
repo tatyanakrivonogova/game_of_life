@@ -22,6 +22,8 @@ public:
     void setCell(int, int, bool);
     bool getCell(int, int) const;
 
+    void changeCells(std::vector< std::vector<bool> >&&) noexcept;
+
     const std::vector<int>& getBornRule() const;
     const std::vector<int>& getSurviveRule() const;
 

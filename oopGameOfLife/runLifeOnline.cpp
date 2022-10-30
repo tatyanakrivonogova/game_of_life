@@ -22,16 +22,13 @@ void runLifeOnline::run() {
 
     showUniverse* shower = new showUniverseConsole(currentUniverse);
     system("cls");
+    std::cout << "Press any key for finishing game..." << std::endl;
     shower->show();
 
     Sleep(1000);
 
     while (1) {
-        for (int i = 0; i < currentUniverse.height(); ++i) {
-            for (int j = 0; j < currentUniverse.width(); ++j) {
-                checkRule(currentUniverse.torus(i, currentUniverse.height()), currentUniverse.torus(j, currentUniverse.width()));
-            }
-        }
+        changeUniverse();
         system("cls");
         std::cout << "Press any key for finishing game..." << std::endl;
         shower->show();

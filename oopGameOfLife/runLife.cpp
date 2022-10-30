@@ -3,7 +3,7 @@
 
 runLife::runLife(Universe& currentUniverse) : currentUniverse(currentUniverse) {}
 
-int runLife::checkRule(int i, int j)
+bool runLife::checkRule(int i, int j)
 {
     int lifeCount = 0;
     for (int k = i - 1; k < i + 2; ++k) {
@@ -21,27 +21,30 @@ int runLife::checkRule(int i, int j)
 
         for (auto bornValue : currentUniverse.getBornRule()) {
             if (lifeCount == bornValue) {
-                currentUniverse.setCell(i, j, true);
-                break;
+                return true;
             }
         }
     }
     else if (currentUniverse.getCell(i, j) == true) {
 
-        bool flag = true;
         for (auto surviveValue : currentUniverse.getSurviveRule()) {
             if (lifeCount == surviveValue) {
-                flag = false;
-                break;
+                return true;
             }
         }
-        if (flag == true) {
-            currentUniverse.setCell(i, j, false);
-        }
-
-
     }
 
-    return currentUniverse.getCell(i, j);
+    return false;
 }
 
+void runLife::changeUniverse() {
+    std::vector< std::vector<bool> > newcells;
+    newcells.resize(currentUniverse.width());
+    for (int i = 0; i < currentUniverse.width(); ++i) {
+        newcells[i].resize(currentUniverse.height());
+        for (int j = 0; j < currentUniverse.height(); ++j) {
+            newcells[i][j] = checkRule(currentUniverse.torus(i, currentUniverse.width()), currentUniverse.torus(j, currentUniverse.height()));
+        }
+    }
+    currentUniverse.changeCells(std::move(newcells));
+}

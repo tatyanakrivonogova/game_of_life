@@ -5,9 +5,7 @@
 #include "showUniverseFile.h"
 #include "showUniverseConsole.h"
 #include <iostream>
-#include <vector>
 #include <string>
-#include <algorithm>
 
 
 const std::string runLifeOffline::createRulesString() {
@@ -42,7 +40,7 @@ const std::string runLifeOffline::createSurviveRule() {
     return surviveRule;
 }
 
-runLifeOffline::runLifeOffline(Universe& currentUniverse) : runLife(currentUniverse){}
+runLifeOffline::runLifeOffline(Universe& currentUniverse) : runLife(currentUniverse) {}
 
 void runLifeOffline::run() {
 
@@ -59,19 +57,15 @@ void runLifeOffline::run() {
         if (command == "tick") {
 
             std::cout << "Enter the number of iterations: " << std::endl;
-            std::cin >> number_of_iterations; // input string and check if it's digit
+            std::cin >> numberOfIterations; // input string and check if it's digit
             
             std::cout << "Name of Universe: " << currentUniverse.getName() << std::endl;
             std::cout << "The cell will be borned if number of alive cells around is equal: " << createBornRule() << std::endl;
             std::cout << "The cell will survive if number of alive cells around is equal: " << createSurviveRule() << std::endl;
-            std::cout << "Current iteration: " << number_of_iterations << std::endl;
+            std::cout << "Current iteration: " << numberOfIterations << std::endl;
 
-            for (int it = 0; it < number_of_iterations; it++) {
-                for (int i = 0; i < currentUniverse.height(); ++i) {
-                    for (int j = 0; j < currentUniverse.width(); ++j) {
-                        checkRule(currentUniverse.torus(i, currentUniverse.height()), currentUniverse.torus(j, currentUniverse.width()));
-                    }
-                }
+            for (int i = 0; i < numberOfIterations; ++i) {
+                changeUniverse();
             }
 
             showUniverse* shower = new showUniverseConsole(currentUniverse);
@@ -83,25 +77,19 @@ void runLifeOffline::run() {
 
             //std::cout << "Enter the name of output file: " << std::endl;
             //std::cin >> outputFile;
-            if (!(std::cin >> outputFile)) {
-                std::cout << "Enter the name of output file in '*.life' or '*.txt' format: " << std::endl;
-                std::cin >> outputFile;
-            }
+            std::cout << "Enter the name of output file in '*.life' or '*.txt' format: " << std::endl;
+            std::cin >> outputFile;
             while (checkFileFormat(outputFile) == 1) {
                 std::cin >> outputFile;
             }
             std::ofstream fout(outputFile);
             showUniverse* shower = new showUniverseFile(fout, currentUniverse);
 
-            fout << currentUniverse.getName() << std::endl;
+            fout << "#Life 1.06" << std::endl;
+            fout << "#N " << currentUniverse.getName() << std::endl;
             fout << createRulesString() << std::endl;
 
-            for (int i = 0; i < currentUniverse.height(); ++i) {
-                for (int j = 0; j < currentUniverse.width(); ++j) {
-                    checkRule(currentUniverse.torus(i, currentUniverse.height()), currentUniverse.torus(j, currentUniverse.width()));
-                }
-            }
-
+            changeUniverse();
             shower->show();
         }
 

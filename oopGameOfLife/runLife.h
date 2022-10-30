@@ -4,7 +4,8 @@
 class runLife {
 private:
 protected:
-	int checkRule(int, int);
+	bool checkRule(int, int);
+	void changeUniverse();
 	Universe& currentUniverse;
 
 public:
