@@ -164,10 +164,6 @@
     <ClInclude Include="showUniverseFile.h" />
     <ClInclude Include="Universe.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="in.txt" />
-    <Text Include="life.txt.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

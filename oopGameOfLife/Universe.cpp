@@ -5,26 +5,18 @@
 Universe::Universe() : sizeX(0), sizeY(0) {}
 
 
-Universe::Universe(int sizeX, int sizeY, std::string& name, std::vector<int>& born, std::vector<int>& survive) : sizeX(sizeX), sizeY(sizeY) {
-    setName(name);
-
-    //cells = new bool[sizeX * sizeY];
-    cells.resize(sizeX);
-    for (int i = 0; i < sizeX; ++i) {
-        cells[i].resize(sizeY);
-        std::fill(cells[i].begin(), cells[i].end(), 0);
-    }
-    /*for (int i = 0; i < sizeX * sizeY; ++i) {
-        cells[i] = false;
-    }*/
-    /*
-    bornRule.assign(born.begin(), born.end());
-    surviveRule.assign(survive.begin(), survive.end());
-    */
-    bornRule = std::move(born);
-    surviveRule = std::move(survive);
-
-}
+//Universe::Universe(int sizeX, int sizeY, std::string& name, std::vector<int>& born, std::vector<int>& survive) : sizeX(sizeX), sizeY(sizeY) {
+//    setName(name);
+//
+//    cells.resize(sizeX);
+//    for (int i = 0; i < sizeX; ++i) {
+//        cells[i].resize(sizeY);
+//        std::fill(cells[i].begin(), cells[i].end(), 0);
+//    }
+//    bornRule = std::move(born);
+//    surviveRule = std::move(survive);
+//
+//}
 
 Universe::Universe(std::string& name, std::vector<int>& born, std::vector<int>& survive) : sizeX(1), sizeY(1) {
     setName(name);
@@ -32,38 +24,17 @@ Universe::Universe(std::string& name, std::vector<int>& born, std::vector<int>& 
     std::vector<bool> subvector(1, false);
     cells[0] = subvector;
 
-    ////cells = new bool[sizeX * sizeY];
-    //cells.resize(sizeX);
-    //for (int i = 0; i < sizeX; ++i) {
-    //    cells[i].resize(sizeY);
-    //    std::fill(cells[i].begin(), cells[i].end(), 0);
-    //}
-    /*for (int i = 0; i < sizeX * sizeY; ++i) {
-        cells[i] = false;
-    }*/
-    /*
-    bornRule.assign(born.begin(), born.end());
-    surviveRule.assign(survive.begin(), survive.end());
-    */
     bornRule = std::move(born);
     surviveRule = std::move(survive);
 
 }
 
 
-Universe::~Universe() {
-    /*if (cells != nullptr) {
-        delete[] cells;
-    }*/
-}
+Universe::~Universe() {}
 
 
 Universe::Universe(const Universe& otherUniverse) : sizeX(otherUniverse.sizeX), sizeY(otherUniverse.sizeY) {
     name = otherUniverse.name;
-    /*cells = new bool[sizeX * sizeY];
-    for (int i = 0; i < sizeX * sizeY; ++i) {
-        cells[i] = otherUniverse.cells[i];
-    }*/
 
     cells.resize(sizeX);
     for (int i = 0; i < sizeX; ++i) {
@@ -80,8 +51,6 @@ Universe::Universe(const Universe& otherUniverse) : sizeX(otherUniverse.sizeX), 
 
 Universe::Universe(Universe&& otherUniverse) noexcept : sizeX(otherUniverse.sizeX), sizeY(otherUniverse.sizeY) {
     setName(otherUniverse.name);
-    /*cells = otherUniverse.cells;
-    otherUniverse.cells = nullptr;*/
     cells = std::move(otherUniverse.cells);
     otherUniverse.sizeX = 0;
     otherUniverse.sizeY = 0;
@@ -93,8 +62,6 @@ Universe::Universe(Universe&& otherUniverse) noexcept : sizeX(otherUniverse.size
 Universe& Universe::operator=(const Universe& otherUniverse) {
     if (this == &otherUniverse)
         return *this;
-    /*if (cells != nullptr)
-        delete[] cells;*/
     if (!cells.empty()) {
         for (int i = 0; i < sizeX; ++i) {
             cells[i].clear();
@@ -104,10 +71,6 @@ Universe& Universe::operator=(const Universe& otherUniverse) {
     name = otherUniverse.name;
     sizeX = otherUniverse.sizeX;
     sizeY = otherUniverse.sizeY;
-    /*cells = new bool[sizeX * sizeY];
-    for (int i = 0; i < sizeX * sizeY; ++i) {
-        cells[i] = otherUniverse.cells[i];
-    }*/
 
     cells.resize(sizeX);
     for (int i = 0; i < sizeX; ++i) {
@@ -126,8 +89,6 @@ Universe& Universe::operator=(const Universe& otherUniverse) {
 Universe& Universe::operator=(Universe&& otherUniverse) noexcept {
     if (this == &otherUniverse)
         return *this;
-    /*if (cells != nullptr)
-        delete[] cells;*/
     if (!cells.empty()) {
         for (int i = 0; i < sizeX; ++i) {
             cells[i].clear();
@@ -137,8 +98,6 @@ Universe& Universe::operator=(Universe&& otherUniverse) noexcept {
     setName(otherUniverse.name);
     sizeX = otherUniverse.sizeX;
     sizeY = otherUniverse.sizeY;
-    /*cells = otherUniverse.cells;
-    otherUniverse.cells = nullptr;*/
     cells = std::move(otherUniverse.cells);
     otherUniverse.sizeX = 0;
     otherUniverse.sizeY = 0;
@@ -174,7 +133,6 @@ void Universe::setCell(int x, int y, bool value) {
     }
     x = Universe::torus(x, sizeX);
     y = Universe::torus(y, sizeY);
-    //cells[x * sizeY + y] = value;
     cells[x][y] = value;
 }
 
@@ -187,7 +145,6 @@ void Universe::changeCells(std::vector< std::vector<bool> >&& newcells) noexcept
 bool Universe::getCell(int x, int y) const {
     x = Universe::torus(x, sizeX);
     y = Universe::torus(y, sizeY);
-    //return cells[x * sizeY + y];
     return cells[x][y];
 }
 

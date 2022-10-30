@@ -5,7 +5,7 @@
 class Universe {
 public:
     Universe();
-    Universe(int, int, std::string&, std::vector<int>&, std::vector<int>&);
+    /*Universe(int, int, std::string&, std::vector<int>&, std::vector<int>&);*/
     Universe(std::string&, std::vector<int>&, std::vector<int>&);
 
     ~Universe();

@@ -75,8 +75,6 @@ void runLifeOffline::run() {
         if (command == "dump") {
             std::string outputFile;
 
-            //std::cout << "Enter the name of output file: " << std::endl;
-            //std::cin >> outputFile;
             std::cout << "Enter the name of output file in '*.life' or '*.txt' format: " << std::endl;
             std::cin >> outputFile;
             while (checkFileFormat(outputFile) == 1) {
@@ -89,7 +87,7 @@ void runLifeOffline::run() {
             fout << "#N " << currentUniverse.getName() << std::endl;
             fout << createRulesString() << std::endl;
 
-            changeUniverse();
+            //changeUniverse();
             shower->show();
         }
 

@@ -11,15 +11,11 @@ extern void checkExit(std::string&);
 class runLifeOffline : public runLife
 {
 private:
-    //std::ofstream& fout;
     int numberOfIterations = 1;
 
     const std::string createBornRule();
     const std::string createSurviveRule();
     const std::string createRulesString();
-    std::string getCmdArgument(std::string&);
-    int getIterations(const std::string&);
-    const std::string getOutputFile(const std::string&);
 
 public:
 
