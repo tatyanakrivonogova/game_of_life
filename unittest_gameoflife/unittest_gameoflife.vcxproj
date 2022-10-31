@@ -150,6 +150,9 @@
       <Project>{6f5fc92a-9fa1-429d-ae1f-9b5ecbc27a00}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="test_in.txt.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

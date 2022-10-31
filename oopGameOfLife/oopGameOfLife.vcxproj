@@ -142,6 +142,7 @@
     <ClCompile Include="createUniverseFile.cpp" />
     <ClCompile Include="createUniverseGenerator.cpp" />
     <ClCompile Include="gameOfLife.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="runLife.cpp" />
     <ClCompile Include="runLifeCmd.cpp" />
     <ClCompile Include="runLifeOffline.cpp" />

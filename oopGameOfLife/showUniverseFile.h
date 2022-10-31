@@ -6,6 +6,10 @@ class showUniverseFile : public showUniverse {
 private:
     std::ofstream& fout;
 
+    const std::string createBornRule();
+    const std::string createSurviveRule();
+    const std::string createRulesString();
+
 public:
 
     showUniverseFile(std::ofstream&, Universe&);

@@ -12,10 +12,8 @@ class runLifeOffline : public runLife
 {
 private:
     int numberOfIterations = 1;
-
     const std::string createBornRule();
     const std::string createSurviveRule();
-    const std::string createRulesString();
 
 public:
 

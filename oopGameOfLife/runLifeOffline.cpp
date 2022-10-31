@@ -7,22 +7,7 @@
 #include <iostream>
 #include <string>
 
-
-const std::string runLifeOffline::createRulesString() {
-    std::string rules;
-    rules += "#R B";
-    for (auto x : currentUniverse.getBornRule()) {
-        rules += x + '0';
-    }
-    rules += '/';
-    rules += 'S';
-    for (auto x : currentUniverse.getSurviveRule()) {
-        rules += x + '0';
-    }
-
-    return rules;
-}
-
+extern bool checkIterations(std::string&);
 
 const std::string runLifeOffline::createBornRule() {
     std::string bornRule;
@@ -47,7 +32,6 @@ void runLifeOffline::run() {
     std::string command;
 
     std::cout << "Enter next command: " << std::endl;
-    //std::cin >> command;
     getAnswer(command);
     while (command.length() != 0) {
         while (command != "tick" and command != "dump" and command != "help" and command != "exit") {
@@ -57,7 +41,13 @@ void runLifeOffline::run() {
         if (command == "tick") {
 
             std::cout << "Enter the number of iterations: " << std::endl;
-            std::cin >> numberOfIterations; // input string and check if it's digit
+            std::string iterations;
+            std::cin >> iterations;
+            while (checkIterations(iterations) == 1) {
+                std::cin >> iterations;
+            }
+            numberOfIterations = stoi(iterations);
+
             
             std::cout << "Name of Universe: " << currentUniverse.getName() << std::endl;
             std::cout << "The cell will be borned if number of alive cells around is equal: " << createBornRule() << std::endl;
@@ -83,11 +73,6 @@ void runLifeOffline::run() {
             std::ofstream fout(outputFile);
             showUniverse* shower = new showUniverseFile(fout, currentUniverse);
 
-            fout << "#Life 1.06" << std::endl;
-            fout << "#N " << currentUniverse.getName() << std::endl;
-            fout << createRulesString() << std::endl;
-
-            //changeUniverse();
             shower->show();
         }
 

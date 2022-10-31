@@ -1,7 +1,0 @@
-#Life 1.06
-#N MyUniverse
-#R B3/S23
-2 2
-2 3
-3 2
-3 3

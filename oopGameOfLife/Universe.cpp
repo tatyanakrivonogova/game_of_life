@@ -4,20 +4,6 @@
 
 Universe::Universe() : sizeX(0), sizeY(0) {}
 
-
-//Universe::Universe(int sizeX, int sizeY, std::string& name, std::vector<int>& born, std::vector<int>& survive) : sizeX(sizeX), sizeY(sizeY) {
-//    setName(name);
-//
-//    cells.resize(sizeX);
-//    for (int i = 0; i < sizeX; ++i) {
-//        cells[i].resize(sizeY);
-//        std::fill(cells[i].begin(), cells[i].end(), 0);
-//    }
-//    bornRule = std::move(born);
-//    surviveRule = std::move(survive);
-//
-//}
-
 Universe::Universe(std::string& name, std::vector<int>& born, std::vector<int>& survive) : sizeX(1), sizeY(1) {
     setName(name);
     cells.resize(1);
@@ -137,7 +123,6 @@ void Universe::setCell(int x, int y, bool value) {
 }
 
 void Universe::changeCells(std::vector< std::vector<bool> >&& newcells) noexcept {
-    
     cells = std::move(newcells);
 }
 

@@ -5,7 +5,6 @@
 showUniverseConsole::showUniverseConsole(Universe& currentUniverse) : showUniverse(currentUniverse) {}
 
 void showUniverseConsole::show() {
-	//system("cls");
 	for (int i = 0; i < currentUniverse.height(); ++i) {
 		for (int j = 0; j < currentUniverse.width(); ++j) {
 			if (currentUniverse.getCell(j, i) == true) {

@@ -15,10 +15,6 @@
 runLifeOnline::runLifeOnline(Universe& currentUniverse) : runLife(currentUniverse) {}
 
 void runLifeOnline::run() {
-    /*
-    showUniverse show(currentUniverse);
-    show.showCurrentUniverse();
-    */
 
     showUniverse* shower = new showUniverseConsole(currentUniverse);
     system("cls");

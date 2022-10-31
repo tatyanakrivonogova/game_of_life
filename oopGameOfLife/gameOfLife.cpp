@@ -49,11 +49,7 @@ bool checkFileFormat(std::string& str) {
 	}
 	if (format == "life" or format == "txt") {
 		return 0;
-	} /*else if (format == "txt") {
-		std::cout << "Expected file in the format '*.life' , not '*.txt'" << std::endl;
-		std::cout << "Enter the name of input file in '*.life' format: " << std::endl;
-		return 1;
-	}*/ else {
+	} else {
 		std::cout << "Wrong name of file. Please, try again: " << std::endl;
 		return 1;
 	}
@@ -90,7 +86,7 @@ std::string getCmdArgument(std::string& str) {
 }
 
 const std::string getIterations(const std::string& str) {
-	int pos = str.find('=');
+	size_t pos = str.find('=');
 	++pos;
 	while (pos < str.length() and isspace(str[pos])) {
 		++pos;
@@ -126,7 +122,7 @@ bool checkIterations(std::string& str) {
 }
 
 const std::string getFile(const std::string& str) {
-	int pos = str.find('=');
+	size_t pos = str.find('=');
 	++pos;
 	while (pos < str.length() and isspace(str[pos])) {
 		++pos;
@@ -139,17 +135,8 @@ const std::string getFile(const std::string& str) {
 	return outputFile;
 }
 
+/*
 int main(int argc, char** argv) {
-
-	//if (argc == 1) { // если в аргументах только имя программы
-	//	std::cout << "no arguments!" << std::endl; // выводим, что нет аргументов
-	//}
-	//else {
-	//	// иначе выводим все аргументы, которые переданы
-	//	for (int i = 1; i < argc; i++) {
-	//		std::cout << "argv[" << i << "] - " << argv[i] << std::endl;
-	//	}
-	//}
 
 	setlocale(LC_ALL, "Russian");
 
@@ -233,12 +220,12 @@ int main(int argc, char** argv) {
 	}
 
 	if (option == "offline") {
-		std::string inputFile;
-		std::cout << "Enter the name of input file in '*.life' or '*.txt' format: " << std::endl;
-		std::cin >> inputFile;
-		std::ifstream fin;
-		while (checkFileFormat(inputFile) == 1 or openFile(fin, inputFile) == 1) {
+		if (inputFile.empty()) {
+			std::cout << "Enter the name of input file in '*.life' or '*.txt' format: " << std::endl;
 			std::cin >> inputFile;
+			while (checkFileFormat(inputFile) == 1 or openFile(fin, inputFile) == 1) {
+				std::cin >> inputFile;
+			}
 		}
 
 		createUniverse* creator = new createUniverseFile(fin);
@@ -265,12 +252,12 @@ int main(int argc, char** argv) {
 		}
 
 		if (option1 == "read") {
-			std::string inputFile;
-			std::cout << "Enter the name of input file in '*.life' or '*.txt' format: " << std::endl;
-			std::cin >> inputFile;
-			std::ifstream fin;
-			while (checkFileFormat(inputFile) == 1 or openFile(fin, inputFile) == 1) {
+			if (inputFile.empty()) {
+				std::cout << "Enter the name of input file in '*.life' or '*.txt' format: " << std::endl;
 				std::cin >> inputFile;
+				while (checkFileFormat(inputFile) == 1 or openFile(fin, inputFile) == 1) {
+					std::cin >> inputFile;
+				}
 			}
 			createUniverse* creator = new createUniverseFile(fin);
 			Universe newUniverse = creator->create();
@@ -280,3 +267,4 @@ int main(int argc, char** argv) {
 	}
 	return 0;
 }
+*/

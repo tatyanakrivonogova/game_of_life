@@ -26,8 +26,13 @@ void createUniverseFile::getRules(std::string& rules, std::vector<int>& born, st
     }
     ++pos;
 
-    while (pos < rules.length() and rules[pos] >= '0' and rules[pos] <= '8') {
-        born.push_back(rules[pos] - '0');
+    while (pos < rules.length() and rules[pos] >= '0' and rules[pos] <= '9') {
+        if (rules[pos] == '9') {
+            std::cout << "Wrong born rule! Cell can't have 9 cells around!" << std::endl;
+        }
+        else {
+            born.push_back(rules[pos] - '0');
+        }
         ++pos;
     }
 
@@ -36,15 +41,19 @@ void createUniverseFile::getRules(std::string& rules, std::vector<int>& born, st
     }
     ++pos;
 
-    while (pos < rules.length() and rules[pos] >= '0' and rules[pos] <= '8') {
-        survive.push_back(rules[pos] - '0');
+    while (pos < rules.length() and rules[pos] >= '0' and rules[pos] <= '9') {
+        if (rules[pos] == '9') {
+            std::cout << "Wrong survive rule! Cell can't have 9 cells around!" << std::endl;
+        }
+        else {
+            survive.push_back(rules[pos] - '0');
+        }
         ++pos;
     }
 }
 
 const std::string createUniverseFile::getName(std::string& str) {
-    //std::string name = str;
-    if (/*str.empty() or */str.find("#N") == std::string::npos) {
+    if (str.find("#N") == std::string::npos) {
         std::cout << "Please, enter the name of universe: " << std::endl;
         std::cin >> str;
     }
@@ -95,7 +104,7 @@ Universe createUniverseFile::create() {
     int y;
 
     if (!saved.empty()) {
-        int pos = 0;
+        size_t pos = 0;
         std::string coord;
         while (pos < saved.length() and !isDigit(saved[pos])) {
             ++pos;

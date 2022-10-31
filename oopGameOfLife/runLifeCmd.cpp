@@ -46,10 +46,6 @@ void runLifeCmd::run() {
 
     showUniverse* shower = new showUniverseFile(fout, currentUniverse);
 
-    fout << "#Life 1.06" << std::endl;
-    fout << "#N " << currentUniverse.getName() << std::endl;
-    fout << createRulesString() << std::endl;
-
     for (int i = 0; i < currentUniverse.height(); ++i) {
         for (int j = 0; j < currentUniverse.width(); ++j) {
             checkRule(currentUniverse.torus(i, currentUniverse.height()), currentUniverse.torus(j, currentUniverse.width()));
