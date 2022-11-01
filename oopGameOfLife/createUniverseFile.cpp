@@ -8,7 +8,7 @@
 
 std::string createUniverseFile::readLine() {
     std::string data;
-    std::getline(fin, data);
+    std::getline(*fin, data);
     return data;
 }
 
@@ -66,7 +66,7 @@ const std::string createUniverseFile::getName(std::string& str) {
     return str;
 }
 
-createUniverseFile::createUniverseFile(std::ifstream& fin) : fin(fin) {}
+createUniverseFile::createUniverseFile(std::ifstream* fin) : fin(fin) {}
 
 Universe createUniverseFile::create() {
     std::string format;
@@ -126,7 +126,7 @@ Universe createUniverseFile::create() {
         y = stoi(coord);
     }
 
-    while (fin >> x >> y) {
+    while (*fin >> x >> y) {
         newUniverse.setCell(x - 1, y - 1, true);
     }
 

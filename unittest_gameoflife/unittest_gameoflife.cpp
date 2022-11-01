@@ -42,7 +42,7 @@ TEST(GameOfLifeTests, testUniverse) {
 
 TEST(GameOfLifeTests, testCreateUniverseFile) {
 	std::ifstream fin("test_in.txt");
-	createUniverse* creator = new createUniverseFile(fin);
+	createUniverse* creator = new createUniverseFile(&fin);
 	Universe u = creator->create();
 
 	std::string name = "test_name";
@@ -67,15 +67,15 @@ TEST(GameOfLifeTests, testCreateUniverseFile) {
 
 TEST(GameOfLifeTests, testShowUniverseFile) {
 	std::ifstream fin("test_in.txt");
-	createUniverse* creator = new createUniverseFile(fin);
+	createUniverse* creator = new createUniverseFile(&fin);
 	Universe u = creator->create();
 
 	std::ofstream fout("test_out.life");
-	showUniverse* shower = new showUniverseFile(fout, u);
+	showUniverse* shower = new showUniverseFile(&fout, &u);
 	shower->show();
 
 	std::ifstream fin1("test_out.life");
-	createUniverse* creator1 = new createUniverseFile(fin1);
+	createUniverse* creator1 = new createUniverseFile(&fin1);
 	Universe u1 = creator1->create();
 
 	EXPECT_EQ(u.getName(), u1.getName());
@@ -97,15 +97,15 @@ TEST(GameOfLifeTests, testShowUniverseFile) {
 
 TEST(GameOfLifeTests, testRunLife) {
 	std::ifstream fin("test_in.txt");
-	createUniverse* creator = new createUniverseFile(fin);
+	createUniverse* creator = new createUniverseFile(&fin);
 	Universe u = creator->create();
-	runLife* runner = new runLifeOffline(u);
+	runLife* runner = new runLifeOffline(&u);
 
 	runner->changeUniverse();
 
 
 	std::ifstream fin1("test_in_after.txt");
-	createUniverse* creator1 = new createUniverseFile(fin1);
+	createUniverse* creator1 = new createUniverseFile(&fin1);
 	Universe u1 = creator1->create();
 	
 	EXPECT_TRUE(u == u1);

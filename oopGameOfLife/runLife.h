@@ -5,10 +5,10 @@ class runLife {
 private:
 protected:
 	bool checkRule(int, int);
-	Universe& currentUniverse;
+	Universe* currentUniverse;
 
 public:
-	runLife(Universe&);
+	runLife(Universe*);
 	virtual void run() = 0;
 	virtual ~runLife() = default;
 	void changeUniverse();

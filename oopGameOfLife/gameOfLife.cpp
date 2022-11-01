@@ -202,9 +202,9 @@ int main(int argc, char** argv) {
 		}
 		std::ofstream fout(outputFile);
 
-		createUniverse* creator = new createUniverseFile(fin);
+		createUniverse* creator = new createUniverseFile(&fin);
 		Universe newUniverse = creator->create();
-		runLife* runner = new runLifeCmd(newUniverse, fout, numberOfIterations);
+		runLife* runner = new runLifeCmd(&newUniverse, &fout, numberOfIterations);
 		runner->run();
 
 		//delete creator;
@@ -232,9 +232,9 @@ int main(int argc, char** argv) {
 			}
 		}
 
-		createUniverse* creator = new createUniverseFile(fin);
+		createUniverse* creator = new createUniverseFile(&fin);
 		Universe newUniverse = creator->create();
-		runLife* runner = new runLifeOffline(newUniverse);
+		runLife* runner = new runLifeOffline(&newUniverse);
 		runner->run();
 	}
 
@@ -251,7 +251,7 @@ int main(int argc, char** argv) {
 		if (option1 == "generate") {
 			createUniverse* creator = new createUniverseGenerator();
 			Universe newUniverse = creator->create();
-			runLife* runner = new runLifeOnline(newUniverse);
+			runLife* runner = new runLifeOnline(&newUniverse);
 			runner->run();
 		}
 
@@ -263,9 +263,9 @@ int main(int argc, char** argv) {
 					std::cin >> inputFile;
 				}
 			}
-			createUniverse* creator = new createUniverseFile(fin);
+			createUniverse* creator = new createUniverseFile(&fin);
 			Universe newUniverse = creator->create();
-			runLife* runner = new runLifeOnline(newUniverse);
+			runLife* runner = new runLifeOnline(&newUniverse);
 			runner->run();
 		}
 	}

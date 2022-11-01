@@ -12,7 +12,7 @@
 #include <Windows.h>
 #include <conio.h>
 
-runLifeOnline::runLifeOnline(Universe& currentUniverse) : runLife(currentUniverse) {}
+runLifeOnline::runLifeOnline(Universe* currentUniverse) : runLife(currentUniverse) {}
 
 void runLifeOnline::run() {
 

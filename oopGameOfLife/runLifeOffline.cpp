@@ -11,7 +11,7 @@ extern bool checkIterations(std::string&);
 
 const std::string runLifeOffline::createBornRule() {
     std::string bornRule;
-    for (auto x : currentUniverse.getBornRule()) {
+    for (auto x : currentUniverse->getBornRule()) {
         bornRule += x + '0';
     }
     return bornRule;
@@ -19,13 +19,13 @@ const std::string runLifeOffline::createBornRule() {
 
 const std::string runLifeOffline::createSurviveRule() {
     std::string surviveRule;
-    for (auto x : currentUniverse.getSurviveRule()) {
+    for (auto x : currentUniverse->getSurviveRule()) {
         surviveRule += x + '0';
     }
     return surviveRule;
 }
 
-runLifeOffline::runLifeOffline(Universe& currentUniverse) : runLife(currentUniverse) {}
+runLifeOffline::runLifeOffline(Universe* currentUniverse) : runLife(currentUniverse) {}
 
 void runLifeOffline::run() {
 
@@ -49,7 +49,7 @@ void runLifeOffline::run() {
             numberOfIterations = stoi(iterations);
 
             
-            std::cout << "Name of Universe: " << currentUniverse.getName() << std::endl;
+            std::cout << "Name of Universe: " << currentUniverse->getName() << std::endl;
             std::cout << "The cell will be borned if number of alive cells around is equal: " << createBornRule() << std::endl;
             std::cout << "The cell will survive if number of alive cells around is equal: " << createSurviveRule() << std::endl;
             std::cout << "Current iteration: " << numberOfIterations << std::endl;
@@ -71,7 +71,7 @@ void runLifeOffline::run() {
                 std::cin >> outputFile;
             }
             std::ofstream fout(outputFile);
-            showUniverse* shower = new showUniverseFile(fout, currentUniverse);
+            showUniverse* shower = new showUniverseFile(&fout, currentUniverse);
 
             shower->show();
         }

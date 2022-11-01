@@ -5,7 +5,7 @@ class runLifeOnline : public runLife {
 
 public:
 
-    runLifeOnline(Universe&);
+    runLifeOnline(Universe*);
     ~runLifeOnline() = default;
 
     void run() override;

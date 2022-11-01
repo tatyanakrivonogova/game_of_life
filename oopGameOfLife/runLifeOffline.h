@@ -5,7 +5,7 @@
 
 extern void getAnswer(std::string& str);
 extern bool checkFileFormat(std::string& str);
-extern bool openFile(std::ifstream&, std::string&);
+extern bool openFile(std::ifstream*, std::string&);
 extern void checkExit(std::string&);
 
 class runLifeOffline : public runLife
@@ -17,7 +17,7 @@ private:
 
 public:
 
-    runLifeOffline(Universe&);
+    runLifeOffline(Universe*);
     ~runLifeOffline() = default;
 
     void run() override;

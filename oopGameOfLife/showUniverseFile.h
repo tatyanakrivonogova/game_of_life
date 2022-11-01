@@ -4,7 +4,7 @@
 
 class showUniverseFile : public showUniverse {
 private:
-    std::ofstream& fout;
+    std::ofstream* fout;
 
     const std::string createBornRule();
     const std::string createSurviveRule();
@@ -12,7 +12,7 @@ private:
 
 public:
 
-    showUniverseFile(std::ofstream&, Universe&);
+    showUniverseFile(std::ofstream*, Universe*);
     ~showUniverseFile() = default;
 
     void show() override;

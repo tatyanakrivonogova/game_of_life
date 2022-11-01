@@ -8,7 +8,7 @@ private:
 
 public:
 
-    showUniverseConsole(Universe&);
+    showUniverseConsole(Universe*);
     ~showUniverseConsole() = default;
 
     void show() override;
