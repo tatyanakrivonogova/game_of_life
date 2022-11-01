@@ -92,6 +92,35 @@ Universe& Universe::operator=(Universe&& otherUniverse) noexcept {
     return *this;
 }
 
+bool Universe::operator==(const Universe& other) {
+    if (name != other.name) {
+        return false;
+    }
+
+    if (bornRule != other.bornRule) {
+        return false;
+    }
+    if (surviveRule != other.surviveRule) {
+        return false;
+    }
+
+    if (sizeX != other.sizeX) {
+        return false;
+    }
+    if (sizeY != other.sizeY) {
+        return false;
+    }
+
+    for (int i = 0; i < sizeX; ++i) {
+        for (int j = 0; j < sizeY; ++j) {
+            if (cells[i][j] != other.cells[i][j]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 
 void Universe::setName(std::string& nameUniverse) {
     name = std::move(nameUniverse);

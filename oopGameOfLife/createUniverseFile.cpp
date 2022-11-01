@@ -130,6 +130,8 @@ Universe createUniverseFile::create() {
         newUniverse.setCell(x - 1, y - 1, true);
     }
 
+    newUniverse.setCell(newUniverse.width() * 2-1, newUniverse.height() * 2-1, false);
+
     return newUniverse;
 }
 

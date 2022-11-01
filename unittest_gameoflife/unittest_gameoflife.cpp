@@ -53,8 +53,8 @@ TEST(GameOfLifeTests, testCreateUniverseFile) {
 	EXPECT_EQ(u.getBornRule(), born);
 	EXPECT_EQ(u.getSurviveRule(), survive);
 
-	EXPECT_EQ(u.width(), 2);
-	EXPECT_EQ(u.height(), 3);
+	EXPECT_EQ(u.width(), 4);
+	EXPECT_EQ(u.height(), 6);
 
 	EXPECT_EQ(u.getCell(0, 0), false);
 	EXPECT_EQ(u.getCell(0, 1), true);
@@ -103,7 +103,33 @@ TEST(GameOfLifeTests, testRunLife) {
 
 	runner->changeUniverse();
 
-	EXPECT_EQ(u.width(), 2);
+
+	std::ifstream fin1("test_in_after.txt");
+	createUniverse* creator1 = new createUniverseFile(fin1);
+	Universe u1 = creator1->create();
+	
+	EXPECT_TRUE(u == u1);
+
+	/*
+	Universe u1 = u;
+	for (int i = 0; i < u1.width(); ++i) {
+		for (int j = 0; j < u1.height(); ++j) {
+			u1.setCell(i + 1, j + 1, false);
+		}
+	}
+	u.setCell(1, 1, true);
+	u.setCell(2, 3, true);
+	u.setCell(4, 2, true);
+	u.setCell(4, 3, true);
+
+
+	EXPECT_TRUE(u == u1);
+	*/
+
+
+
+
+	/*EXPECT_EQ(u.width(), 2);
 	EXPECT_EQ(u.height(), 3);
 
 	EXPECT_EQ(u.getCell(0, 0), false);
@@ -111,5 +137,5 @@ TEST(GameOfLifeTests, testRunLife) {
 	EXPECT_EQ(u.getCell(0, 2), false);
 	EXPECT_EQ(u.getCell(1, 0), false);
 	EXPECT_EQ(u.getCell(1, 1), true);
-	EXPECT_EQ(u.getCell(1, 2), true);
+	EXPECT_EQ(u.getCell(1, 2), true);*/
 }

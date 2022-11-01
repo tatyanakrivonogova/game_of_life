@@ -3,6 +3,7 @@
 #include <string>
 #include <algorithm>
 #include "Universe.h"
+#include "creatorFactory.h"
 #include "createUniverse.h"
 #include "createUniverseFile.h"
 #include "createUniverseGenerator.h"
@@ -135,7 +136,7 @@ const std::string getFile(const std::string& str) {
 	return outputFile;
 }
 
-/*
+
 int main(int argc, char** argv) {
 
 	setlocale(LC_ALL, "Russian");
@@ -206,11 +207,14 @@ int main(int argc, char** argv) {
 		runLife* runner = new runLifeCmd(newUniverse, fout, numberOfIterations);
 		runner->run();
 
+		//delete creator;
+		//delete runner;
 		exit(0);
 	}
 
 	std::string option;
-	std::cout << "Enter the option: " << std::endl;
+	std::cout << "Choose the option: " << std::endl;
+	std::cout << "Enter 'online' or 'offline' : " << std::endl;
 	getAnswer(option);
 
 
@@ -267,4 +271,3 @@ int main(int argc, char** argv) {
 	}
 	return 0;
 }
-*/

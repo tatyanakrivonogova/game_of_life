@@ -141,12 +141,14 @@
   <ItemGroup>
     <ClCompile Include="createUniverseFile.cpp" />
     <ClCompile Include="createUniverseGenerator.cpp" />
+    <ClCompile Include="creatorFactory.cpp" />
     <ClCompile Include="gameOfLife.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="runLife.cpp" />
     <ClCompile Include="runLifeCmd.cpp" />
     <ClCompile Include="runLifeOffline.cpp" />
     <ClCompile Include="runLifeOnline.cpp" />
+    <ClCompile Include="runnerFactory.cpp" />
     <ClCompile Include="showUniverseConsole.cpp" />
     <ClCompile Include="showUniverseFile.cpp" />
     <ClCompile Include="Universe.cpp" />
@@ -155,11 +157,13 @@
     <ClInclude Include="createUniverse.h" />
     <ClInclude Include="createUniverseFile.h" />
     <ClInclude Include="createUniverseGenerator.h" />
+    <ClInclude Include="creatorFactory.h" />
     <ClInclude Include="gameOfLife.h" />
     <ClInclude Include="runLife.h" />
     <ClInclude Include="runLifeCmd.h" />
     <ClInclude Include="runLifeOffline.h" />
     <ClInclude Include="runLifeOnline.h" />
+    <ClInclude Include="runnerFactory.h" />
     <ClInclude Include="showUniverse.h" />
     <ClInclude Include="showUniverseConsole.h" />
     <ClInclude Include="showUniverseFile.h" />
