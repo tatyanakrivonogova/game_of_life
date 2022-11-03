@@ -1,12 +1,15 @@
 #include "creatorFactory.h"
 #include "createUniverseFile.h"
 #include "createUniverseGenerator.h"
+#include <memory>
 
-createUniverse* creatorFactory::buildCreator(creatorTypes type, std::ifstream* fin = nullptr) {
+std::shared_ptr <createUniverse> creatorFactory::buildCreator(creatorTypes type, std::ifstream* fin) {
     if (type == file) {
-        return new createUniverseFile(fin);
+        //return new createUniverseFile(fin);
+        return std::make_shared<createUniverseFile>(fin);
     }
     if (type == generator) {
-        return new createUniverseGenerator();
+        //return new createUniverseGenerator();
+        return std::make_shared<createUniverseGenerator>();
     }
 }

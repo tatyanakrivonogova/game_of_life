@@ -1,6 +1,7 @@
 #include "runLifeOffline.h"
 #include "runLife.h"
 #include "Universe.h"
+#include "showerFactory.h"
 #include "showUniverse.h"
 #include "showUniverseFile.h"
 #include "showUniverseConsole.h"
@@ -28,7 +29,7 @@ const std::string runLifeOffline::createSurviveRule() {
 runLifeOffline::runLifeOffline(Universe* currentUniverse) : runLife(currentUniverse) {}
 
 void runLifeOffline::run() {
-
+    showerFactory showerFactory;
     std::string command;
 
     std::cout << "Enter next command: " << std::endl;
@@ -58,7 +59,8 @@ void runLifeOffline::run() {
                 changeUniverse();
             }
 
-            showUniverse* shower = new showUniverseConsole(currentUniverse);
+            //showUniverse* shower = new showUniverseConsole(currentUniverse);
+            std::shared_ptr<showUniverse> shower = showerFactory.buildShower(console, currentUniverse);
             shower->show(); // sleep and expect any click
         }
 
@@ -71,8 +73,8 @@ void runLifeOffline::run() {
                 std::cin >> outputFile;
             }
             std::ofstream fout(outputFile);
-            showUniverse* shower = new showUniverseFile(&fout, currentUniverse);
-
+            //showUniverse* shower = new showUniverseFile(currentUniverse, &fout);
+            std::shared_ptr<showUniverse> shower = showerFactory.buildShower(outputfile, currentUniverse, &fout);
             shower->show();
         }
 

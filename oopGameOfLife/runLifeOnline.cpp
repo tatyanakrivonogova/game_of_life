@@ -4,6 +4,7 @@
 #include "createUniverseFile.h"
 #include "runLife.h"
 #include "createUniverse.h"
+#include "showerFactory.h"
 #include "showUniverse.h"
 #include "showUniverseConsole.h"
 #include <cstdlib>
@@ -16,7 +17,9 @@ runLifeOnline::runLifeOnline(Universe* currentUniverse) : runLife(currentUnivers
 
 void runLifeOnline::run() {
 
-    showUniverse* shower = new showUniverseConsole(currentUniverse);
+    showerFactory showerFactory;
+    //showUniverse* shower = new showUniverseConsole(currentUniverse);
+    std::shared_ptr<showUniverse> shower = showerFactory.buildShower(console, currentUniverse);
     system("cls");
     std::cout << "Press any key for finishing game..." << std::endl;
     shower->show();

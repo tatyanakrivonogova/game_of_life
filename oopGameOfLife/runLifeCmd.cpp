@@ -1,6 +1,7 @@
 #include "runLifeCmd.h"
 #include "runLife.h"
 #include "Universe.h"
+#include "showerFactory.h"
 #include "showUniverse.h"
 #include "showUniverseFile.h"
 #include <iostream>
@@ -44,7 +45,9 @@ runLifeCmd::runLifeCmd(Universe* currentUniverse, std::ofstream* fout, int numbe
 
 void runLifeCmd::run() {
 
-    showUniverse* shower = new showUniverseFile(fout, currentUniverse);
+    showerFactory showerFactory;
+    //showUniverse* shower = new showUniverseFile(currentUniverse, fout);
+    std::shared_ptr<showUniverse> shower = showerFactory.buildShower(outputfile, currentUniverse, fout);
 
     for (int i = 0; i < currentUniverse->height(); ++i) {
         for (int j = 0; j < currentUniverse->width(); ++j) {

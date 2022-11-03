@@ -35,7 +35,7 @@ const std::string showUniverseFile::createRulesString() {
     return rules;
 }
 
-showUniverseFile::showUniverseFile(std::ofstream* fout, Universe* currentUniverse) : fout(fout), showUniverse(currentUniverse) {}
+showUniverseFile::showUniverseFile(Universe* currentUniverse, std::ofstream* fout) : showUniverse(currentUniverse), fout(fout) {}
 
 void showUniverseFile::show() {
 	*fout << "#Life 1.06" << std::endl;

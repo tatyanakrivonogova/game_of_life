@@ -12,7 +12,7 @@ private:
 
 public:
 
-    showUniverseFile(std::ofstream*, Universe*);
+    showUniverseFile(Universe*, std::ofstream*);
     ~showUniverseFile() = default;
 
     void show() override;

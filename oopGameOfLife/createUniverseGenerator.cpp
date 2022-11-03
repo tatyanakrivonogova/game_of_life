@@ -1,6 +1,7 @@
 #include "createUniverseGenerator.h"
 #include "createUniverse.h"
 #include "createUniverseFile.h"
+#include "creatorFactory.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -48,67 +49,50 @@ Universe createUniverseGenerator::create() {
     srand(time(NULL));
     int number = rand() % 12;
     Universe newUniverse;
+    creatorFactory creatorFactory;
+    std::ifstream fin;
 
     if (number == 0) {
-        std::ifstream fin("gosper_glider_gun.txt");
-        createUniverse* creator = new createUniverseFile(&fin);
-        newUniverse = creator->create();
+        fin.open("gosper_glider_gun.txt");
+        
     }
     if (number == 1) {
-        std::ifstream fin("clock.txt");
-        createUniverse* creator = new createUniverseFile(&fin);
-        newUniverse = creator->create();
+        fin.open("clock.txt");
     }
     if (number == 2) {
-        std::ifstream fin("endless_growth.txt");
-        createUniverse* creator = new createUniverseFile(&fin);
-        newUniverse = creator->create();
+        fin.open("endless_growth.txt");
     }
     if (number == 3) {
-        std::ifstream fin("galaxy.txt");
-        createUniverse* creator = new createUniverseFile(&fin);
-        newUniverse = creator->create();
+        fin.open("galaxy.txt");
     }
     if (number == 4) {
-        std::ifstream fin("oktagon2.txt");
-        createUniverse* creator = new createUniverseFile(&fin);
-        newUniverse = creator->create();
+        fin.open("oktagon2.txt");
     }
     if (number == 5) {
-        std::ifstream fin("pi-wave.txt");
-        createUniverse* creator = new createUniverseFile(&fin);
-        newUniverse = creator->create();
+        fin.open("pi-wave.txt");
     }
     if (number == 6) {
-        std::ifstream fin("pulsar.txt");
-        createUniverse* creator = new createUniverseFile(&fin);
-        newUniverse = creator->create();
+        fin.open("pulsar.txt");
     }
     if (number == 7) {
-        std::ifstream fin("planer.txt");
-        createUniverse* creator = new createUniverseFile(&fin);
-        newUniverse = creator->create();
+        fin.open("planer.txt");
     }
     if (number == 8) {
-        std::ifstream fin("random_exploration.txt");
-        createUniverse* creator = new createUniverseFile(&fin);
-        newUniverse = creator->create();
+        fin.open("random_exploration.txt");
     }
     if (number == 9) {
-        std::ifstream fin("star.txt");
-        createUniverse* creator = new createUniverseFile(&fin);
-        newUniverse = creator->create();
+        fin.open("star.txt");
     }
     if (number == 10) {
-        std::ifstream fin("space_ship.txt");
-        createUniverse* creator = new createUniverseFile(&fin);
-        newUniverse = creator->create();
+        fin.open("space_ship.txt");
     }
     if (number == 11) {
-        std::ifstream fin("penta.txt");
-        createUniverse* creator = new createUniverseFile(&fin);
-        newUniverse = creator->create();
+        fin.open("penta.txt");
     }
+
+    //createUniverse* creator = new createUniverseFile(&fin);
+    std::shared_ptr<createUniverse> creator = creatorFactory.buildCreator(file, &fin);
+    newUniverse = creator->create();
 
     return newUniverse;
 }

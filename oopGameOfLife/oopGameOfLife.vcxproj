@@ -149,6 +149,7 @@
     <ClCompile Include="runLifeOffline.cpp" />
     <ClCompile Include="runLifeOnline.cpp" />
     <ClCompile Include="runnerFactory.cpp" />
+    <ClCompile Include="showerFactory.cpp" />
     <ClCompile Include="showUniverseConsole.cpp" />
     <ClCompile Include="showUniverseFile.cpp" />
     <ClCompile Include="Universe.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="runLifeOffline.h" />
     <ClInclude Include="runLifeOnline.h" />
     <ClInclude Include="runnerFactory.h" />
+    <ClInclude Include="showerFactory.h" />
     <ClInclude Include="showUniverse.h" />
     <ClInclude Include="showUniverseConsole.h" />
     <ClInclude Include="showUniverseFile.h" />

@@ -1,5 +1,6 @@
 #pragma once
 #include "createUniverse.h"
+#include <memory>
 
 enum creatorTypes {
 	file, generator
@@ -8,5 +9,5 @@ enum creatorTypes {
 class creatorFactory
 {
 public:
-	createUniverse* buildCreator(creatorTypes, std::ifstream*);
+	std::shared_ptr <createUniverse> buildCreator(creatorTypes type, std::ifstream* fin = nullptr);
 };

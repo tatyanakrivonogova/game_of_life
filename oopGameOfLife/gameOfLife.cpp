@@ -7,9 +7,11 @@
 #include "createUniverse.h"
 #include "createUniverseFile.h"
 #include "createUniverseGenerator.h"
+#include "showerFactory.h"
 #include "showUniverse.h"
 #include "showUniverseConsole.h"
 #include "showUniverseFile.h"
+#include "runnerFactory.h"
 #include "runLife.h"
 #include "runLifeOnline.h"
 #include "runLifeOffline.h"
@@ -141,6 +143,9 @@ int main(int argc, char** argv) {
 
 	setlocale(LC_ALL, "Russian");
 
+	creatorFactory creatorFactory;
+	runnerFactory runnerFactory;
+
 	std::string inputFile;
 	std::ifstream fin;
 
@@ -202,9 +207,13 @@ int main(int argc, char** argv) {
 		}
 		std::ofstream fout(outputFile);
 
-		createUniverse* creator = new createUniverseFile(&fin);
+		//createUniverse* creator = new createUniverseFile(&fin);
+		//createUniverse* creator = creatorFactory.buildCreator(file, &fin);
+		std::shared_ptr<createUniverse> creator = creatorFactory.buildCreator(file, &fin);
 		Universe newUniverse = creator->create();
-		runLife* runner = new runLifeCmd(&newUniverse, &fout, numberOfIterations);
+		//runLife* runner = new runLifeCmd(&newUniverse, &fout, numberOfIterations);
+		//runLife* runner = runnerFactory.buildRunner(cmd, &newUniverse, &fout, numberOfIterations);
+		std::shared_ptr<runLife> runner = runnerFactory.buildRunner(cmd, &newUniverse, &fout, numberOfIterations);
 		runner->run();
 
 		//delete creator;
@@ -232,9 +241,13 @@ int main(int argc, char** argv) {
 			}
 		}
 
-		createUniverse* creator = new createUniverseFile(&fin);
+		//createUniverse* creator = new createUniverseFile(&fin);
+		//createUniverse* creator = creatorFactory.buildCreator(file, &fin);
+		std::shared_ptr<createUniverse> creator = creatorFactory.buildCreator(file, &fin);
 		Universe newUniverse = creator->create();
-		runLife* runner = new runLifeOffline(&newUniverse);
+		//runLife* runner = new runLifeOffline(&newUniverse);
+		//runLife* runner = runnerFactory.buildRunner(offline, &newUniverse);
+		std::shared_ptr<runLife> runner = runnerFactory.buildRunner(offline, &newUniverse);
 		runner->run();
 	}
 
@@ -249,9 +262,13 @@ int main(int argc, char** argv) {
 		}
 
 		if (option1 == "generate") {
-			createUniverse* creator = new createUniverseGenerator();
+			//createUniverse* creator = new createUniverseGenerator();
+			//createUniverse* creator = creatorFactory.buildCreator(generator);
+			std::shared_ptr<createUniverse> creator = creatorFactory.buildCreator(generator);
 			Universe newUniverse = creator->create();
-			runLife* runner = new runLifeOnline(&newUniverse);
+			//runLife* runner = new runLifeOnline(&newUniverse);
+			//runLife* runner = runnerFactory.buildRunner(online, &newUniverse);
+			std::shared_ptr<runLife> runner = runnerFactory.buildRunner(online, &newUniverse);
 			runner->run();
 		}
 
@@ -263,9 +280,13 @@ int main(int argc, char** argv) {
 					std::cin >> inputFile;
 				}
 			}
-			createUniverse* creator = new createUniverseFile(&fin);
+			//createUniverse* creator = new createUniverseFile(&fin);
+			//createUniverse* creator = creatorFactory.buildCreator(file, &fin);
+			std::shared_ptr<createUniverse> creator = creatorFactory.buildCreator(file, &fin);
 			Universe newUniverse = creator->create();
-			runLife* runner = new runLifeOnline(&newUniverse);
+			//runLife* runner = new runLifeOnline(&newUniverse);
+			//runLife* runner = runnerFactory.buildRunner(online, &newUniverse);
+			std::shared_ptr<runLife> runner = runnerFactory.buildRunner(online, &newUniverse);
 			runner->run();
 		}
 	}

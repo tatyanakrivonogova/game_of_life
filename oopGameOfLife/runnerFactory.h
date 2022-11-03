@@ -1,15 +1,14 @@
 #pragma once
 #include "runLife.h"
 #include "runnerFactory.h"
+#include <memory>
 
-//enum runnerTypes {
-//	//createUniverseFile, createUniverseGenerator
-//	online, offline, cmd
-//};
+enum runnerTypes {
+	online, offline, cmd
+};
 
 class runnerFactory
 {
 public:
-	runLife* buildRunner(Universe&, std::ofstream&, int);
-	runLife* buildRunner(Universe&);
+	std::shared_ptr<runLife> buildRunner(runnerTypes type, Universe* u = nullptr, std::ofstream* fout = nullptr, int n = 1);
 };
