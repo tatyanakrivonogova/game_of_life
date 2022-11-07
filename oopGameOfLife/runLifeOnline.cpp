@@ -18,7 +18,6 @@ runLifeOnline::runLifeOnline(Universe* currentUniverse) : runLife(currentUnivers
 void runLifeOnline::run() {
 
     showerFactory showerFactory;
-    //showUniverse* shower = new showUniverseConsole(currentUniverse);
     std::shared_ptr<showUniverse> shower = showerFactory.buildShower(console, currentUniverse);
     system("cls");
     std::cout << "Press any key for finishing game..." << std::endl;

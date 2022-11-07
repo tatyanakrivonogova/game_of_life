@@ -122,6 +122,48 @@ bool Universe::operator==(const Universe& other) {
 }
 
 
+bool Universe::is_similar(const Universe& other) {
+
+    if (bornRule != other.bornRule) {
+        return false;
+    }
+    if (surviveRule != other.surviveRule) {
+        return false;
+    }
+
+    int min_sizeX = std::min(sizeX, other.width());
+    int min_sizeY = std::min(sizeY, other.height());
+
+
+    for (int i = 0; i < min_sizeX; ++i) {
+        for (int j = 0; j < min_sizeY; ++j) {
+            if (cells[i][j] != other.cells[i][j]) {
+                return false;
+            }
+        }
+    }
+
+    if (sizeX == min_sizeX) {
+        for (int i = min_sizeX; i < other.width(); ++i) {
+            for (int j = min_sizeY; j < other.height(); ++j) {
+                if (other.cells[i][j] == true) {
+                    return false;
+                }
+            }
+        }
+    }
+    else {
+        for (int i = min_sizeX; i < sizeX; ++i) {
+            for (int j = min_sizeY; j < sizeY; ++j) {
+                if (cells[i][j] == true) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+
 void Universe::setName(std::string& nameUniverse) {
     name = std::move(nameUniverse);
 }

@@ -59,9 +59,8 @@ void runLifeOffline::run() {
                 changeUniverse();
             }
 
-            //showUniverse* shower = new showUniverseConsole(currentUniverse);
             std::shared_ptr<showUniverse> shower = showerFactory.buildShower(console, currentUniverse);
-            shower->show(); // sleep and expect any click
+            shower->show();
         }
 
         if (command == "dump") {
@@ -73,7 +72,6 @@ void runLifeOffline::run() {
                 std::cin >> outputFile;
             }
             std::ofstream fout(outputFile);
-            //showUniverse* shower = new showUniverseFile(currentUniverse, &fout);
             std::shared_ptr<showUniverse> shower = showerFactory.buildShower(outputfile, currentUniverse, &fout);
             shower->show();
         }

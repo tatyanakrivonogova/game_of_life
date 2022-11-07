@@ -9,3 +9,6 @@
 #include "runLifeOnline.cpp"
 #include "runLifeOffline.cpp"
 #include "runLifeCmd.cpp"
+#include "creatorFactory.cpp"
+#include "runnerFactory.cpp"
+#include "showerFactory.cpp"

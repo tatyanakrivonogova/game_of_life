@@ -16,6 +16,7 @@ public:
     Universe& operator=(Universe&&) noexcept;
 
     bool operator==(const Universe&);
+    bool is_similar(const Universe&);
 
     void setName(std::string&);
     const std::string& getName() const;
@@ -36,7 +37,6 @@ public:
 private:
     int sizeX = 0;
     int sizeY = 0;
-    //bool* cells = nullptr;
     std::vector< std::vector<bool> > cells;
     std::string name;
     std::vector<int> bornRule;

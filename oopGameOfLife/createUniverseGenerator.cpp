@@ -90,7 +90,6 @@ Universe createUniverseGenerator::create() {
         fin.open("penta.txt");
     }
 
-    //createUniverse* creator = new createUniverseFile(&fin);
     std::shared_ptr<createUniverse> creator = creatorFactory.buildCreator(file, &fin);
     newUniverse = creator->create();
 

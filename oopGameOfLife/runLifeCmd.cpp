@@ -46,7 +46,6 @@ runLifeCmd::runLifeCmd(Universe* currentUniverse, std::ofstream* fout, int numbe
 void runLifeCmd::run() {
 
     showerFactory showerFactory;
-    //showUniverse* shower = new showUniverseFile(currentUniverse, fout);
     std::shared_ptr<showUniverse> shower = showerFactory.buildShower(outputfile, currentUniverse, fout);
 
     for (int i = 0; i < currentUniverse->height(); ++i) {
